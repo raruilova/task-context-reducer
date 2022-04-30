@@ -1,7 +1,7 @@
-import { useContext, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { TaskContext } from "../context/TaskContex";
 import { generateId } from "../helper/generateId";
+import useTask from "../hooks/useTask";
 
 const TaskForm = () => {
   const [task, setTask] = useState({
@@ -12,7 +12,7 @@ const TaskForm = () => {
   const navigate = useNavigate();
   const params = useParams();
 
-  const { addTask, tasks, updateTask } = useContext(TaskContext);
+  const { addTask, tasks, updateTask } = useTask();
 
   const handleChange = (e) => {
     setTask({
@@ -25,34 +25,32 @@ const TaskForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if(params.id) {
-        updateTask(task)
+    if (params.id) {
+      updateTask(task);
     } else {
-        addTask(task);
+      addTask(task);
     }
-    
+
     setTask({
       id: generateId(),
       title: "",
       description: "",
     });
-    navigate('/');
+    navigate("/");
   };
 
   useEffect(() => {
-     const taskFound = tasks.find((task) => task.id === params.id);
-     console.log(params.id);
-     console.log(tasks);
-    if(taskFound) {
-        setTask(taskFound);
-        console.log(taskFound);
+    const taskFound = tasks.find((task) => task.id === params.id);
+    if (taskFound) {
+      setTask(taskFound);
     }
-    console.log(taskFound);
   }, [params.id]);
   return (
     <div className="flex justify-center items-center h-3/4">
       <form className="bg-gray-900 p-10" onSubmit={handleSubmit}>
-        <h2 className="mb-7 text-3xl">{params.id ? 'Update task' : 'Add task'}</h2>
+        <h2 className="mb-7 text-3xl">
+          {params.id ? "Update task" : "Add task"}
+        </h2>
         <div className="mb-5">
           <input
             type="text"
@@ -76,7 +74,7 @@ const TaskForm = () => {
           ></textarea>
         </div>
         <button className="bg-green-600 w-full hover:bg-green-500 py-2 px-4 mt-5 rounded">
-        {params.id ? 'Update task' : 'Create task'}
+          {params.id ? "Update task" : "Create task"}
         </button>
       </form>
     </div>

@@ -1,10 +1,9 @@
-import { useContext } from "react";
 import { Link } from "react-router-dom";
-import { TaskContext } from "../context/TaskContex";
+import useTask from "../hooks/useTask";
 
 const TaskList = () => {
   const { deleteTask, tasks, updateTask, toggleTaskDone } =
-    useContext(TaskContext);
+    useTask();
   return (
     <div className="flex justify-center">
       <div className="w-6/12">

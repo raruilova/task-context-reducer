@@ -1,4 +1,5 @@
 import { createContext, useReducer } from "react";
+import { ADD_TASK, DELETE_TASK, TOGGLE_DONE, UPDATE_TASK } from "../../types";
 import { appReducer } from "./AppReducer";
 
 const initialState = {
@@ -25,18 +26,18 @@ export const TaskProvider = ({children}) => {
     const [state, dispatch] = useReducer(appReducer, initialState);
 
     const addTask = (task) => {
-        dispatch({type: 'ADD_TASK', payload: task});
+        dispatch({type: ADD_TASK, payload: task});
     }
     const deleteTask = (task) => {
-        dispatch({type: 'DELETE_TASK', payload: task});
+        dispatch({type: DELETE_TASK, payload: task});
     }
 
     const updateTask = (task) => {
-        dispatch({type: 'UPDATE_TASK', payload: task});
+        dispatch({type: UPDATE_TASK, payload: task});
     }
 
     const toggleTaskDone = (id) => {
-        dispatch({type: 'TOGGLE_DONE', payload: id});
+        dispatch({type: TOGGLE_DONE, payload: id});
     }
     return (
         <TaskContext.Provider value={{
