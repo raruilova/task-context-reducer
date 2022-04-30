@@ -48,7 +48,7 @@ const TaskForm = () => {
         console.log(taskFound);
     }
     console.log(taskFound);
-  }, [params.id, tasks]);
+  }, [params.id]);
   return (
     <div className="flex justify-center items-center h-3/4">
       <form className="bg-gray-900 p-10" onSubmit={handleSubmit}>

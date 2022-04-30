@@ -32,7 +32,7 @@ export const TaskProvider = ({children}) => {
     }
 
     const updateTask = (task) => {
-        dispatch({type: 'DELETE_TASK', payload: task});
+        dispatch({type: 'UPDATE_TASK', payload: task});
     }
 
     const toggleTaskDone = (id) => {
