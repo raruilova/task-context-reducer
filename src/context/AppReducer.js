@@ -1,4 +1,4 @@
-import { ADD_TASK, DELETE_TASK, TOGGLE_DONE, UPDATE_TASK } from "../../types";
+import { ADD_TASK, DELETE_TASK, TOGGLE_DONE, UPDATE_TASK } from "../types";
 
 export function appReducer(state, action) {
     switch (action.type) {
